@@ -25,12 +25,22 @@ Module Functions
         '    Console.ReadLine()
         'Next
 
-        AccumulateMessage("Hello Johnny")
-        AccumulateMessage("That's Not a Number")
-        AccumulateMessage("User Name is required")
+        AccumulateMessage("Hello Johnny", False)
+        AccumulateMessage("That's Not a Number", False)
+        AccumulateMessage("User Name is required", False)
+
         'MsgBox(AccumulateMessage(""))
-        Console.WriteLine(AccumulateMessage(""))
+
+        Console.WriteLine(AccumulateMessage("", False))
         Console.ReadLine()
+
+        'clear
+        AccumulateMessage("", True)
+        'add new stuff
+        AccumulateMessage("New Stuff.....", False)
+        Console.WriteLine(AccumulateMessage("", False))
+        Console.ReadLine()
+
     End Sub
 
     Function Letter() As String
@@ -55,10 +65,20 @@ Module Functions
         Return total
     End Function
 
-    Function AccumulateMessage(ByVal newMessage As String) As String
+    Function AccumulateMessage(ByVal newMessage As String, ByVal clear As Boolean) As String
         Static userMessage As String
-        userMessage &= newMessage & vbNewLine
+
+        If clear = True Then
+            userMessage = ""
+        Else
+            userMessage &= newMessage & vbNewLine
+        End If
+
         Return userMessage
+
     End Function
+
+
+
 
 End Module
